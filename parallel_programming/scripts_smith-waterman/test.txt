@@ -1,0 +1,178 @@
+    // Initialize DP matrix
+    for (int i = 0; i <= len1; i++) {
+   1042a:	fe042623          	sw	zero,-20(s0)
+   1042e:	a099                	j	10474 <smith_waterman+0x72>
+        for (int j = 0; j <= len2; j++) {
+   10430:	fe042423          	sw	zero,-24(s0)
+   10434:	a02d                	j	1045e <smith_waterman+0x5c>
+            dp_matrix[i][j] = 0;
+   10436:	67c9                	lui	a5,0x12
+   10438:	02078693          	addi	a3,a5,32 # 12020 <dp_matrix>
+   1043c:	fec42703          	lw	a4,-20(s0)
+   10440:	87ba                	mv	a5,a4
+   10442:	079e                	slli	a5,a5,0x7
+   10444:	97ba                	add	a5,a5,a4
+   10446:	fe842703          	lw	a4,-24(s0)
+   1044a:	97ba                	add	a5,a5,a4
+   1044c:	078a                	slli	a5,a5,0x2
+   1044e:	97b6                	add	a5,a5,a3
+   10450:	0007a023          	sw	zero,0(a5)
+        for (int j = 0; j <= len2; j++) {
+   10454:	fe842783          	lw	a5,-24(s0)
+   10458:	0785                	addi	a5,a5,1
+   1045a:	fef42423          	sw	a5,-24(s0)
+   1045e:	fe842703          	lw	a4,-24(s0)
+   10462:	fd842783          	lw	a5,-40(s0)
+   10466:	fce7d8e3          	bge	a5,a4,10436 <smith_waterman+0x34>
+    for (int i = 0; i <= len1; i++) {
+   1046a:	fec42783          	lw	a5,-20(s0)
+   1046e:	0785                	addi	a5,a5,1
+   10470:	fef42623          	sw	a5,-20(s0)
+   10474:	fec42703          	lw	a4,-20(s0)
+   10478:	fdc42783          	lw	a5,-36(s0)
+   1047c:	fae7dae3          	bge	a5,a4,10430 <smith_waterman+0x2e>
+        }
+    }
+
+    // Fill DP matrix
+    for (int i = 1; i <= len1; i++) {
+   10480:	4785                	li	a5,1
+   10482:	fef42223          	sw	a5,-28(s0)
+   10486:	aab1                	j	105e2 <smith_waterman+0x1e0>
+        for (int j = 1; j <= len2; j++) {
+   10488:	4785                	li	a5,1
+   1048a:	fef42023          	sw	a5,-32(s0)
+   1048e:	aa3d                	j	105cc <smith_waterman+0x1ca>
+            int match = dp_matrix[i-1][j-1] + (seq1[i-1] == seq2[j-1] ? MATCH_SCORE : MISMATCH_SCORE);
+   10490:	fe442783          	lw	a5,-28(s0)
+   10494:	fff78713          	addi	a4,a5,-1
+   10498:	fe042783          	lw	a5,-32(s0)
+   1049c:	fff78613          	addi	a2,a5,-1
+   104a0:	67c9                	lui	a5,0x12
+   104a2:	02078693          	addi	a3,a5,32 # 12020 <dp_matrix>
+   104a6:	87ba                	mv	a5,a4
+   104a8:	079e                	slli	a5,a5,0x7
+   104aa:	97ba                	add	a5,a5,a4
+   104ac:	97b2                	add	a5,a5,a2
+   104ae:	078a                	slli	a5,a5,0x2
+   104b0:	97b6                	add	a5,a5,a3
+   104b2:	4398                	lw	a4,0(a5)
+   104b4:	fe442783          	lw	a5,-28(s0)
+   104b8:	17fd                	addi	a5,a5,-1
+   104ba:	fbc42683          	lw	a3,-68(s0)
+   104be:	97b6                	add	a5,a5,a3
+   104c0:	0007c683          	lbu	a3,0(a5)
+   104c4:	fe042783          	lw	a5,-32(s0)
+   104c8:	17fd                	addi	a5,a5,-1
+   104ca:	fb842603          	lw	a2,-72(s0)
+   104ce:	97b2                	add	a5,a5,a2
+   104d0:	0007c783          	lbu	a5,0(a5)
+   104d4:	00f69463          	bne	a3,a5,104dc <smith_waterman+0xda>
+   104d8:	4789                	li	a5,2
+   104da:	a011                	j	104de <smith_waterman+0xdc>
+   104dc:	57fd                	li	a5,-1
+   104de:	97ba                	add	a5,a5,a4
+   104e0:	fcf42a23          	sw	a5,-44(s0)
+            int delete = dp_matrix[i-1][j] + GAP_PENALTY;
+   104e4:	fe442783          	lw	a5,-28(s0)
+   104e8:	fff78713          	addi	a4,a5,-1
+   104ec:	67c9                	lui	a5,0x12
+   104ee:	02078693          	addi	a3,a5,32 # 12020 <dp_matrix>
+   104f2:	87ba                	mv	a5,a4
+   104f4:	079e                	slli	a5,a5,0x7
+   104f6:	97ba                	add	a5,a5,a4
+   104f8:	fe042703          	lw	a4,-32(s0)
+   104fc:	97ba                	add	a5,a5,a4
+   104fe:	078a                	slli	a5,a5,0x2
+   10500:	97b6                	add	a5,a5,a3
+   10502:	439c                	lw	a5,0(a5)
+   10504:	17f9                	addi	a5,a5,-2
+   10506:	fcf42823          	sw	a5,-48(s0)
+            int insert = dp_matrix[i][j-1] + GAP_PENALTY;
+   1050a:	fe042783          	lw	a5,-32(s0)
+   1050e:	fff78613          	addi	a2,a5,-1
+   10512:	67c9                	lui	a5,0x12
+   10514:	02078693          	addi	a3,a5,32 # 12020 <dp_matrix>
+   10518:	fe442703          	lw	a4,-28(s0)
+   1051c:	87ba                	mv	a5,a4
+   1051e:	079e                	slli	a5,a5,0x7
+   10520:	97ba                	add	a5,a5,a4
+   10522:	97b2                	add	a5,a5,a2
+   10524:	078a                	slli	a5,a5,0x2
+   10526:	97b6                	add	a5,a5,a3
+   10528:	439c                	lw	a5,0(a5)
+   1052a:	17f9                	addi	a5,a5,-2
+   1052c:	fcf42623          	sw	a5,-52(s0)
+            dp_matrix[i][j] = MAX3(0, match, MAX(delete, insert));
+   10530:	fd042783          	lw	a5,-48(s0)
+   10534:	fcc42703          	lw	a4,-52(s0)
+   10538:	00f75363          	bge	a4,a5,1053e <smith_waterman+0x13c>
+   1053c:	873e                	mv	a4,a5
+   1053e:	fd442783          	lw	a5,-44(s0)
+   10542:	0007d363          	bgez	a5,10548 <smith_waterman+0x146>
+   10546:	4781                	li	a5,0
+   10548:	00f75363          	bge	a4,a5,1054e <smith_waterman+0x14c>
+   1054c:	873e                	mv	a4,a5
+   1054e:	67c9                	lui	a5,0x12
+   10550:	02078613          	addi	a2,a5,32 # 12020 <dp_matrix>
+   10554:	fe442683          	lw	a3,-28(s0)
+   10558:	87b6                	mv	a5,a3
+   1055a:	079e                	slli	a5,a5,0x7
+   1055c:	97b6                	add	a5,a5,a3
+   1055e:	fe042683          	lw	a3,-32(s0)
+   10562:	97b6                	add	a5,a5,a3
+   10564:	078a                	slli	a5,a5,0x2
+   10566:	97b2                	add	a5,a5,a2
+   10568:	c398                	sw	a4,0(a5)
+
+            // Track the maximum score and its position
+            if (dp_matrix[i][j] > max_score) {
+   1056a:	67c9                	lui	a5,0x12
+   1056c:	02078693          	addi	a3,a5,32 # 12020 <dp_matrix>
+   10570:	fe442703          	lw	a4,-28(s0)
+   10574:	87ba                	mv	a5,a4
+   10576:	079e                	slli	a5,a5,0x7
+   10578:	97ba                	add	a5,a5,a4
+   1057a:	fe042703          	lw	a4,-32(s0)
+   1057e:	97ba                	add	a5,a5,a4
+   10580:	078a                	slli	a5,a5,0x2
+   10582:	97b6                	add	a5,a5,a3
+   10584:	4398                	lw	a4,0(a5)
+   10586:	67c9                	lui	a5,0x12
+   10588:	0107a783          	lw	a5,16(a5) # 12010 <max_score>
+   1058c:	02e7db63          	bge	a5,a4,105c2 <smith_waterman+0x1c0>
+                max_score = dp_matrix[i][j];
+   10590:	67c9                	lui	a5,0x12
+   10592:	02078693          	addi	a3,a5,32 # 12020 <dp_matrix>
+   10596:	fe442703          	lw	a4,-28(s0)
+   1059a:	87ba                	mv	a5,a4
+   1059c:	079e                	slli	a5,a5,0x7
+   1059e:	97ba                	add	a5,a5,a4
+   105a0:	fe042703          	lw	a4,-32(s0)
+   105a4:	97ba                	add	a5,a5,a4
+   105a6:	078a                	slli	a5,a5,0x2
+   105a8:	97b6                	add	a5,a5,a3
+   105aa:	4398                	lw	a4,0(a5)
+   105ac:	67c9                	lui	a5,0x12
+   105ae:	00e7a823          	sw	a4,16(a5) # 12010 <max_score>
+                max_i = i;
+   105b2:	fe442703          	lw	a4,-28(s0)
+   105b6:	80e1a423          	sw	a4,-2040(gp) # 12014 <max_i>
+                max_j = j;
+   105ba:	fe042703          	lw	a4,-32(s0)
+   105be:	80e1a623          	sw	a4,-2036(gp) # 12018 <max_j>
+        for (int j = 1; j <= len2; j++) {
+   105c2:	fe042783          	lw	a5,-32(s0)
+   105c6:	0785                	addi	a5,a5,1
+   105c8:	fef42023          	sw	a5,-32(s0)
+   105cc:	fe042703          	lw	a4,-32(s0)
+   105d0:	fd842783          	lw	a5,-40(s0)
+   105d4:	eae7dee3          	bge	a5,a4,10490 <smith_waterman+0x8e>
+    for (int i = 1; i <= len1; i++) {
+   105d8:	fe442783          	lw	a5,-28(s0)
+   105dc:	0785                	addi	a5,a5,1
+   105de:	fef42223          	sw	a5,-28(s0)
+   105e2:	fe442703          	lw	a4,-28(s0)
+   105e6:	fdc42783          	lw	a5,-36(s0)
+   105ea:	e8e7dfe3          	bge	a5,a4,10488 <smith_waterman+0x86>
+ 

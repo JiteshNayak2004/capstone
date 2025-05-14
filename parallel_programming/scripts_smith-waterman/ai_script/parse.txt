@@ -1,0 +1,222 @@
+   24	void smith_waterman(const char* seq1, const char* seq2) {
+   0x00010402 <+0>:	addi	sp,sp,-80
+   0x00010404 <+2>:	sw	ra,76(sp)
+   0x00010406 <+4>:	sw	s0,72(sp)
+   0x00010408 <+6>:	addi	s0,sp,80
+   0x0001040a <+8>:	sw	a0,-68(s0)
+   0x0001040e <+12>:	sw	a1,-72(s0)
+
+25	   int len1 = strlen(seq1);
+   0x00010412 <+16>:	lw	a0,-68(s0)
+   0x00010416 <+20>:	jal	0x10360 <strlen@plt>
+   0x00010418 <+22>:	mv	a5,a0
+   0x0001041a <+24>:	sw	a5,-36(s0)
+
+26	   int len2 = strlen(seq2);
+   0x0001041e <+28>:	lw	a0,-72(s0)
+   0x00010422 <+32>:	jal	0x10360 <strlen@plt>
+   0x00010424 <+34>:	mv	a5,a0
+   0x00010426 <+36>:	sw	a5,-40(s0)
+
+27
+28	   // Initialize DP matrix
+29	   for (int i = 0; i <= len1; i++) {
+   0x0001042a <+40>:	sw	zero,-20(s0)
+   0x0001042e <+44>:	j	0x10474 <smith_waterman+114>
+   0x0001046a <+104>:	lw	a5,-20(s0)
+   0x0001046e <+108>:	addi	a5,a5,1
+   0x00010470 <+110>:	sw	a5,-20(s0)
+   0x00010474 <+114>:	lw	a4,-20(s0)
+   0x00010478 <+118>:	lw	a5,-36(s0)
+   0x0001047c <+122>:	bge	a5,a4,0x10430 <smith_waterman+46>
+
+30	       for (int j = 0; j <= len2; j++) {
+   0x00010430 <+46>:	sw	zero,-24(s0)
+   0x00010434 <+50>:	j	0x1045e <smith_waterman+92>
+   0x00010454 <+82>:	lw	a5,-24(s0)
+   0x00010458 <+86>:	addi	a5,a5,1
+   0x0001045a <+88>:	sw	a5,-24(s0)
+--Type <RET> for more, q to quit, c to continue without paging--
+   0x0001045e <+92>:	lw	a4,-24(s0)
+   0x00010462 <+96>:	lw	a5,-40(s0)
+   0x00010466 <+100>:	bge	a5,a4,0x10436 <smith_waterman+52>
+
+31	           dp_matrix[i][j] = 0;
+   0x00010436 <+52>:	lui	a5,0x12
+   0x00010438 <+54>:	addi	a3,a5,32 # 0x12020 <dp_matrix>
+   0x0001043c <+58>:	lw	a4,-20(s0)
+   0x00010440 <+62>:	mv	a5,a4
+   0x00010442 <+64>:	slli	a5,a5,0x7
+   0x00010444 <+66>:	add	a5,a5,a4
+   0x00010446 <+68>:	lw	a4,-24(s0)
+   0x0001044a <+72>:	add	a5,a5,a4
+   0x0001044c <+74>:	slli	a5,a5,0x2
+   0x0001044e <+76>:	add	a5,a5,a3
+   0x00010450 <+78>:	sw	zero,0(a5)
+
+32	       }
+33	   }
+34
+35	   // Fill DP matrix
+36	   for (int i = 1; i <= len1; i++) {
+   0x00010480 <+126>:	li	a5,1
+   0x00010482 <+128>:	sw	a5,-28(s0)
+   0x00010486 <+132>:	j	0x105e2 <smith_waterman+480>
+   0x000105d8 <+470>:	lw	a5,-28(s0)
+   0x000105dc <+474>:	addi	a5,a5,1
+   0x000105de <+476>:	sw	a5,-28(s0)
+   0x000105e2 <+480>:	lw	a4,-28(s0)
+   0x000105e6 <+484>:	lw	a5,-36(s0)
+   0x000105ea <+488>:	bge	a5,a4,0x10488 <smith_waterman+134>
+
+37	       for (int j = 1; j <= len2; j++) {
+   0x00010488 <+134>:	li	a5,1
+   0x0001048a <+136>:	sw	a5,-32(s0)
+   0x0001048e <+140>:	j	0x105cc <smith_waterman+458>
+   0x000105c2 <+448>:	lw	a5,-32(s0)
+   0x000105c6 <+452>:	addi	a5,a5,1
+   0x000105c8 <+454>:	sw	a5,-32(s0)
+--Type <RET> for more, q to quit, c to continue without paging--
+   0x000105cc <+458>:	lw	a4,-32(s0)
+   0x000105d0 <+462>:	lw	a5,-40(s0)
+   0x000105d4 <+466>:	bge	a5,a4,0x10490 <smith_waterman+142>
+
+38	           int match = dp_matrix[i-1][j-1] + (seq1[i-1] == seq2[j-1] ?MATCH_SCORE : MISMATCH_SCORE);
+   0x00010490 <+142>:	lw	a5,-28(s0)
+   0x00010494 <+146>:	addi	a4,a5,-1
+   0x00010498 <+150>:	lw	a5,-32(s0)
+   0x0001049c <+154>:	addi	a2,a5,-1
+   0x000104a0 <+158>:	lui	a5,0x12
+   0x000104a2 <+160>:	addi	a3,a5,32 # 0x12020 <dp_matrix>
+   0x000104a6 <+164>:	mv	a5,a4
+   0x000104a8 <+166>:	slli	a5,a5,0x7
+   0x000104aa <+168>:	add	a5,a5,a4
+   0x000104ac <+170>:	add	a5,a5,a2
+   0x000104ae <+172>:	slli	a5,a5,0x2
+   0x000104b0 <+174>:	add	a5,a5,a3
+   0x000104b2 <+176>:	lw	a4,0(a5)
+   0x000104b4 <+178>:	lw	a5,-28(s0)
+   0x000104b8 <+182>:	addi	a5,a5,-1
+   0x000104ba <+184>:	lw	a3,-68(s0)
+   0x000104be <+188>:	add	a5,a5,a3
+   0x000104c0 <+190>:	lbu	a3,0(a5)
+   0x000104c4 <+194>:	lw	a5,-32(s0)
+   0x000104c8 <+198>:	addi	a5,a5,-1
+   0x000104ca <+200>:	lw	a2,-72(s0)
+   0x000104ce <+204>:	add	a5,a5,a2
+   0x000104d0 <+206>:	lbu	a5,0(a5)
+   0x000104d4 <+210>:	bne	a3,a5,0x104dc <smith_waterman+218>
+   0x000104d8 <+214>:	li	a5,2
+   0x000104da <+216>:	j	0x104de <smith_waterman+220>
+   0x000104dc <+218>:	li	a5,-1
+   0x000104de <+220>:	add	a5,a5,a4
+   0x000104e0 <+222>:	sw	a5,-44(s0)
+
+39	           int delete = dp_matrix[i-1][j] + GAP_PENALTY;
+   0x000104e4 <+226>:	lw	a5,-28(s0)
+   0x000104e8 <+230>:	addi	a4,a5,-1
+--Type <RET> for more, q to quit, c to continue without paging--
+   0x000104ec <+234>:	lui	a5,0x12
+   0x000104ee <+236>:	addi	a3,a5,32 # 0x12020 <dp_matrix>
+   0x000104f2 <+240>:	mv	a5,a4
+   0x000104f4 <+242>:	slli	a5,a5,0x7
+   0x000104f6 <+244>:	add	a5,a5,a4
+   0x000104f8 <+246>:	lw	a4,-32(s0)
+   0x000104fc <+250>:	add	a5,a5,a4
+   0x000104fe <+252>:	slli	a5,a5,0x2
+   0x00010500 <+254>:	add	a5,a5,a3
+   0x00010502 <+256>:	lw	a5,0(a5)
+   0x00010504 <+258>:	addi	a5,a5,-2
+   0x00010506 <+260>:	sw	a5,-48(s0)
+
+40	           int insert = dp_matrix[i][j-1] + GAP_PENALTY;
+   0x0001050a <+264>:	lw	a5,-32(s0)
+   0x0001050e <+268>:	addi	a2,a5,-1
+   0x00010512 <+272>:	lui	a5,0x12
+   0x00010514 <+274>:	addi	a3,a5,32 # 0x12020 <dp_matrix>
+   0x00010518 <+278>:	lw	a4,-28(s0)
+   0x0001051c <+282>:	mv	a5,a4
+   0x0001051e <+284>:	slli	a5,a5,0x7
+   0x00010520 <+286>:	add	a5,a5,a4
+   0x00010522 <+288>:	add	a5,a5,a2
+   0x00010524 <+290>:	slli	a5,a5,0x2
+   0x00010526 <+292>:	add	a5,a5,a3
+   0x00010528 <+294>:	lw	a5,0(a5)
+   0x0001052a <+296>:	addi	a5,a5,-2
+   0x0001052c <+298>:	sw	a5,-52(s0)
+
+41	           dp_matrix[i][j] = MAX3(0, match, MAX(delete, insert));
+   0x00010530 <+302>:	lw	a5,-48(s0)
+   0x00010534 <+306>:	lw	a4,-52(s0)
+   0x00010538 <+310>:	bge	a4,a5,0x1053e <smith_waterman+316>
+   0x0001053c <+314>:	mv	a4,a5
+   0x0001053e <+316>:	lw	a5,-44(s0)
+   0x00010542 <+320>:	bgez	a5,0x10548 <smith_waterman+326>
+   0x00010546 <+324>:	li	a5,0
+   0x00010548 <+326>:	bge	a4,a5,0x1054e <smith_waterman+332>
+   0x0001054c <+330>:	mv	a4,a5
+--Type <RET> for more, q to quit, c to continue without paging--
+   0x0001054e <+332>:	lui	a5,0x12
+   0x00010550 <+334>:	addi	a2,a5,32 # 0x12020 <dp_matrix>
+   0x00010554 <+338>:	lw	a3,-28(s0)
+   0x00010558 <+342>:	mv	a5,a3
+   0x0001055a <+344>:	slli	a5,a5,0x7
+   0x0001055c <+346>:	add	a5,a5,a3
+   0x0001055e <+348>:	lw	a3,-32(s0)
+   0x00010562 <+352>:	add	a5,a5,a3
+   0x00010564 <+354>:	slli	a5,a5,0x2
+   0x00010566 <+356>:	add	a5,a5,a2
+   0x00010568 <+358>:	sw	a4,0(a5)
+
+42
+43	           // Track the maximum score and its position
+44	           if (dp_matrix[i][j] > max_score) {
+   0x0001056a <+360>:	lui	a5,0x12
+   0x0001056c <+362>:	addi	a3,a5,32 # 0x12020 <dp_matrix>
+   0x00010570 <+366>:	lw	a4,-28(s0)
+   0x00010574 <+370>:	mv	a5,a4
+   0x00010576 <+372>:	slli	a5,a5,0x7
+   0x00010578 <+374>:	add	a5,a5,a4
+   0x0001057a <+376>:	lw	a4,-32(s0)
+   0x0001057e <+380>:	add	a5,a5,a4
+   0x00010580 <+382>:	slli	a5,a5,0x2
+   0x00010582 <+384>:	add	a5,a5,a3
+   0x00010584 <+386>:	lw	a4,0(a5)
+   0x00010586 <+388>:	lui	a5,0x12
+   0x00010588 <+390>:	lw	a5,16(a5) # 0x12010 <max_score>
+   0x0001058c <+394>:	bge	a5,a4,0x105c2 <smith_waterman+448>
+
+45	               max_score = dp_matrix[i][j];
+   0x00010590 <+398>:	lui	a5,0x12
+   0x00010592 <+400>:	addi	a3,a5,32 # 0x12020 <dp_matrix>
+   0x00010596 <+404>:	lw	a4,-28(s0)
+   0x0001059a <+408>:	mv	a5,a4
+   0x0001059c <+410>:	slli	a5,a5,0x7
+   0x0001059e <+412>:	add	a5,a5,a4
+   0x000105a0 <+414>:	lw	a4,-32(s0)
+   0x000105a4 <+418>:	add	a5,a5,a4
+--Type <RET> for more, q to quit, c to continue without paging--
+   0x000105a6 <+420>:	slli	a5,a5,0x2
+   0x000105a8 <+422>:	add	a5,a5,a3
+   0x000105aa <+424>:	lw	a4,0(a5)
+   0x000105ac <+426>:	lui	a5,0x12
+   0x000105ae <+428>:	sw	a4,16(a5) # 0x12010 <max_score>
+
+46	               max_i = i;
+   0x000105b2 <+432>:	lw	a4,-28(s0)
+   0x000105b6 <+436>:	sw	a4,-2040(gp)
+
+47	               max_j = j;
+   0x000105ba <+440>:	lw	a4,-32(s0)
+   0x000105be <+444>:	sw	a4,-2036(gp)
+
+48	           }
+49	       }
+50	   }
+51	}
+   0x000105ee <+492>:	nop
+   0x000105f0 <+494>:	nop
+   0x000105f2 <+496>:	lw	ra,76(sp)
+   0x000105f4 <+498>:	lw	s0,72(sp)
+   0x000105f6 <+500>:	addi	sp,sp,80
+   0x000105f8 <+502>:	ret

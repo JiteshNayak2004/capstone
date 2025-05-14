@@ -1,0 +1,509 @@
+
+Skip to content
+Navigation Menu
+
+    verilator
+    /
+    verilator
+
+Code
+Issues 328
+Pull requests 15
+Actions
+Security
+
+    Insights
+
+Back to pull request #5612
+Implement VPI array accessors #7616
+
+Jobs
+
+Run details
+
+Annotations
+1 error
+Test | ubuntu-22.04 | clang | dist-vlt-0
+failed Nov 20, 2024 in 9m 23s
+1s
+3s
+3s
+0s
+26s
+8m 47s
+Run ./ci/ci-script.bash
++ '[' linux = linux ']'
++ export MAKE=make
++ MAKE=make
+++ nproc
++ NPROC=4
+++ expr 4 + 1
++ NPROC=5
++ '[' test = build ']'
++ '[' test = test ']'
++ export VERILATOR_TEST_NO_CONTRIBUTORS=1
++ VERILATOR_TEST_NO_CONTRIBUTORS=1
++ export VERILATOR_TEST_NO_LINT_PY=1
++ VERILATOR_TEST_NO_LINT_PY=1
++ '[' linux = osx ']'
++ '[' linux = freebsd ']'
++ '[' ubuntu-22.04 = ubuntu-22.04 ']'
++ sanitize=--sanitize
++ TEST_REGRESS=test_regress
++ '[' 0 == 1 ']'
++ ccache -z
+Statistics zeroed
++ case $TESTS in
++ make -C test_regress 'SCENARIOS=--dist --vlt --sanitize' DRIVER_HASHSET=--hashset=0/4
+make: Entering directory '/home/runner/work/verilator/verilator/repo/test_regress'
+python3 driver.py -j 0 --quiet --rerun --dist --vlt --sanitize --hashset=0/4
+== Many jobs; redirecting STDIN
+==SUMMARY: Left 656  Passed 0  Failed 0  Time 0:00
+driver.py: Found 4 cores, using -j 4
+==SUMMARY: Left 647  Passed 9  Failed 0  Running 4  Eta 22:33  Time 0:15
+==SUMMARY: Left 623  Passed 33  Failed 0  Running 4  Eta 11:37  Time 0:30
+==SUMMARY: Left 610  Passed 46  Failed 0  Running 4  Eta 12:09  Time 0:45
+==SUMMARY: Left 586  Passed 69  Failed 0  Skipped 1  Running 4  Eta 10:12  Time 1:00
+==SUMMARY: Left 563  Passed 92  Failed 0  Skipped 1  Running 4  Eta 9:12  Time 1:16
+==SUMMARY: Left 546  Passed 109  Failed 0  Skipped 1  Running 4  Eta 9:02  Time 1:31
+==SUMMARY: Left 527  Passed 127  Failed 0  Skipped 2  Running 4  Eta 8:40  Time 1:46
+==SUMMARY: Left 511  Passed 142  Failed 0  Skipped 3  Running 4  Eta 8:32  Time 2:01
+==SUMMARY: Left 499  Passed 154  Failed 0  Skipped 3  Running 4  Eta 8:40  Time 2:16
+==SUMMARY: Left 490  Passed 163  Failed 0  Skipped 3  Running 4  Eta 8:56  Time 2:31
+==SUMMARY: Left 465  Passed 188  Failed 0  Skipped 3  Running 4  Eta 8:06  Time 2:46
+==SUMMARY: Left 441  Passed 210  Failed 0  Skipped 5  Running 4  Eta 7:26  Time 3:01
+==SUMMARY: Left 419  Passed 232  Failed 0  Skipped 5  Running 4  Eta 6:57  Time 3:16
+==SUMMARY: Left 395  Passed 256  Failed 0  Skipped 5  Running 4  Eta 6:24  Time 3:31
+==SUMMARY: Left 376  Passed 275  Failed 0  Skipped 5  Running 4  Eta 6:05  Time 3:46
+==SUMMARY: Left 360  Passed 291  Failed 0  Skipped 5  Running 4  Eta 5:52  Time 4:01
+==SUMMARY: Left 347  Passed 304  Failed 0  Skipped 5  Running 4  Eta 5:46  Time 4:16
+==SUMMARY: Left 331  Passed 320  Failed 0  Skipped 5  Running 4  Eta 5:32  Time 4:32
+==SUMMARY: Left 291  Passed 360  Failed 0  Skipped 5  Running 4  Eta 4:34  Time 4:47
+==SUMMARY: Left 276  Passed 375  Failed 0  Skipped 5  Running 4  Eta 4:23  Time 5:02
+==SUMMARY: Left 256  Passed 395  Failed 0  Skipped 5  Running 4  Eta 4:03  Time 5:17
+==SUMMARY: Left 245  Passed 405  Failed 0  Skipped 6  Running 4  Eta 3:57  Time 5:32
+==SUMMARY: Left 229  Passed 421  Failed 0  Skipped 6  Running 4  Eta 3:43  Time 5:47
+==SUMMARY: Left 196  Passed 454  Failed 0  Skipped 6  Running 4  Eta 3:05  Time 6:02
+==SUMMARY: Left 173  Passed 475  Failed 0  Skipped 8  Running 4  Eta 2:42  Time 6:17
+==SUMMARY: Left 152  Passed 496  Failed 0  Skipped 8  Running 4  Eta 2:22  Time 6:32
+==SUMMARY: Left 132  Passed 516  Failed 0  Skipped 8  Running 4  Eta 2:03  Time 6:47
+==SUMMARY: Left 114  Passed 534  Failed 0  Skipped 8  Running 4  Eta 1:46  Time 7:02
+==SUMMARY: Left 94  Passed 551  Failed 0  Skipped 11  Running 4  Eta 1:27  Time 7:17
+==SUMMARY: Left 81  Passed 560  Failed 0  Skipped 15  Running 4  Eta 1:16  Time 7:32
+==SUMMARY: Left 66  Passed 575  Failed 0  Skipped 15  Running 4  Eta 1:02  Time 7:47
+==SUMMARY: Left 44  Passed 597  Failed 0  Skipped 15  Running 4  Eta 0:41  Time 8:03
+vlt/t_vpi_get_value_array: FAILED: Exec of make failed: ccache clang++  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_get_value_array -DVM_PREFIX=Vt_vpi_get_value_array -DVM_PREFIX_INCLUDE="<Vt_vpi_get_value_array.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_get_value_array___024root.h>" -DT_VPI_GET_VALUE_ARRAY   -DVL_LOCK_SPINS=10000 -O0  -c -o t_vpi_get_value_array.o ../../t/t_vpi_get_value_array.cpp
+==SUMMARY: Left 15  Passed 622  Failed 1  Skipped 18  Running 4  Eta 0:13  Time 8:18
+==SUMMARY: Left 1  Passed 636  Failed 1  Skipped 18  Running 1  Time 8:33
+==SUMMARY: Left 2  Passed 636  Failed 0  Failed-First 2  Skipped 18  Time 8:35
+vlt/t_vpi_dump: FAILED: Line 9 miscompares; obj_vlt/t_vpi_dump/vlt_sim.log != t/t_vpi_dump.out
+
+======================================================================
+#vlt/t_vpi_dump: %Error: Line 9 miscompares; obj_vlt/t_vpi_dump/vlt_sim.log != t/t_vpi_dump.out
+		make && test_regress/t/t_vpi_dump.py --sanitize --hashset=0/4 --vlt
+#vlt/t_vpi_get_value_array: %Error: Exec of make failed: ccache clang++  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_get_value_array -DVM_PREFIX=Vt_vpi_get_value_array -DVM_PREFIX_INCLUDE="<Vt_vpi_get_value_array.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_get_value_array___024root.h>" -DT_VPI_GET_VALUE_ARRAY   -DVL_LOCK_SPINS=10000 -O0  -c -o t_vpi_get_value_array.o ../../t/t_vpi_get_value_array.cpp
+		make && test_regress/t/t_vpi_get_value_array.py --sanitize --hashset=0/4 --vlt
+#vlt/t_bench_mux4k_onecpu: -Skip:  No numactl available
+#vlt/t_cover_line_sc: -Skip:  Test requires SystemC; ignore error since not installed
+#vlt/t_dfg_regularize_driver_of_sc_var: -Skip:  Test requires SystemC; ignore error since not installed
+#vlt/t_flag_main_sc_bad: -Skip:  Test requires SystemC; ignore error since not installed
+#vlt/t_flag_make_cmake_sc: -Skip:  Test requires SystemC; ignore error since not installed
+#vlt/t_net_delay_timing_sc: -Skip:  Test requires SystemC; ignore error since not installed
+#vlt/t_sc_names: -Skip:  No SystemC installed
+#vlt/t_sc_vl_assign_sbw: -Skip:  Test requires SystemC; ignore error since not installed
+#vlt/t_trace_abort_fst_sc: -Skip:  No SystemC installed
+#vlt/t_trace_array_fst_portable_sc: -Skip:  No SystemC installed
+#vlt/t_trace_ascendingrange_fst_sc: -Skip:  No SystemC installed
+#vlt/t_trace_complex_params_fst_sc: -Skip:  No SystemC installed
+#vlt/t_trace_ena_sc: -Skip:  No SystemC installed
+#vlt/t_trace_fst_sc: -Skip:  No SystemC installed
+#vlt/t_trace_off_sc: -Skip:  Test requires SystemC; ignore error since not installed
+#vlt/t_var_pins_sc_biguint: -Skip:  Test requires SystemC; ignore error since not installed
+#vlt/t_var_pins_sc_uint_bool_nomain: -Skip:  Test requires SystemC; ignore error since not installed
+#vlt/t_var_sc_bv: -Skip:  Test requires SystemC; ignore error since not installed
+==TESTS DONE, FAILED: Passed 636  Failed 2  Skipped 18  Time 8:35
+======================================================================
+======================================================================
+RERUN  ==
+
+======================================================================
+vlt/t_vpi_get_value_array: ==================================================
+	export GCOV_PREFIX_STRIP='99'
+	export GCOV_PREFIX='/home/runner/work/verilator/verilator/repo/test_regress/obj_dist/gcov_1'
+	perl /home/runner/work/verilator/verilator/repo/test_regress/../bin/verilator --prefix Vt_vpi_get_value_array -cc -Mdir obj_vlt/t_vpi_get_value_array --fdedup --debug-check --comp-limit-members 10 --x-assign unique --make gmake --exe --vpi --no-l2name t/t_vpi_get_value_array.cpp --clk clk -f input.vc +define+TEST_OBJ_DIR=obj_vlt/t_vpi_get_value_array +define+TEST_DUMPFILE=obj_vlt/t_vpi_get_value_array/simx.vcd +define+USE_VPI_NOT_DPI +define+VERILATOR_COMMENTS t/t_vpi_get_value_array.v   > obj_vlt/t_vpi_get_value_array/vlt_compile.log
+- V e r i l a t i o n   R e p o r t: Verilator 5.031 devel rev UNKNOWN.REV
+- Verilator: Built from 0.027 MB sources in 2 modules, into 0.028 MB in 7 C++ files needing 0.000 MB
+- Verilator: Walltime 0.014 s (elab=0.000, cvt=0.003, bld=0.000); cpu 0.014 s on 1 threads; alloced 7.820 MB
+	make -C obj_vlt/t_vpi_get_value_array -f /home/runner/work/verilator/verilator/repo/test_regress/Makefile_obj --no-print-directory VM_PREFIX=Vt_vpi_get_value_array TEST_OBJ_DIR=obj_vlt/t_vpi_get_value_array CPPFLAGS_DRIVER=-DT_VPI_GET_VALUE_ARRAY  OPT_FAST=-O0 OPT_GLOBAL=-O0 Vt_vpi_get_value_array   > obj_vlt/t_vpi_get_value_array/vlt_gcc.log
+driver: Entering directory '/home/runner/work/verilator/verilator/repo/test_regress/obj_vlt/t_vpi_get_value_array'
+ccache clang++  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_get_value_array -DVM_PREFIX=Vt_vpi_get_value_array -DVM_PREFIX_INCLUDE="<Vt_vpi_get_value_array.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_get_value_array___024root.h>" -DT_VPI_GET_VALUE_ARRAY   -DVL_LOCK_SPINS=10000 -O0  -c -o t_vpi_get_value_array.o ../../t/t_vpi_get_value_array.cpp
+../../t/t_vpi_get_value_array.cpp:77:40: error: suggest braces around initialization of subobject [-Werror,-Wmissing-braces]
+    s_vpi_arrayvalue arrayVal = {0, 0, NULL};
+                                       ^~~~
+                                       {   }
+/usr/lib/llvm-14/lib/clang/14.0.0/include/stddef.h:84:18: note: expanded from macro 'NULL'
+#    define NULL __null
+                 ^~~~~~
+1 error generated.
+make[1]: *** [Vt_vpi_get_value_array.mk:64: t_vpi_get_value_array.o] Error 1
+driver: Leaving directory '/home/runner/work/verilator/verilator/repo/test_regress/obj_vlt/t_vpi_get_value_array'
+%Warning: vlt/t_vpi_get_value_array: Exec of make failed: ccache clang++  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_get_value_array -DVM_PREFIX=Vt_vpi_get_value_array -DVM_PREFIX_INCLUDE="<Vt_vpi_get_value_array.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_get_value_array___024root.h>" -DT_VPI_GET_VALUE_ARRAY   -DVL_LOCK_SPINS=10000 -O0  -c -o t_vpi_get_value_array.o ../../t/t_vpi_get_value_array.cpp
+vlt/t_vpi_get_value_array: %Error: Exec of make failed: ccache clang++  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_get_value_array -DVM_PREFIX=Vt_vpi_get_value_array -DVM_PREFIX_INCLUDE="<Vt_vpi_get_value_array.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_get_value_array___024root.h>" -DT_VPI_GET_VALUE_ARRAY   -DVL_LOCK_SPINS=10000 -O0  -c -o t_vpi_get_value_array.o ../../t/t_vpi_get_value_array.cpp
+==SUMMARY: Left 1  Passed 636  Failed 1  Failed-First 2  Skipped 18  Running 1  Time 8:36
+======================================================================
+vlt/t_vpi_dump: ==================================================
+	export GCOV_PREFIX_STRIP='99'
+	export GCOV_PREFIX='/home/runner/work/verilator/verilator/repo/test_regress/obj_dist/gcov_2'
+	perl /home/runner/work/verilator/verilator/repo/test_regress/../bin/verilator --prefix Vt_vpi_dump -cc -Mdir obj_vlt/t_vpi_dump --fdedup --debug-check --comp-limit-members 10 --x-assign unique --make gmake --exe --vpi --public-flat-rw --no-l2name t/t_vpi_dump.cpp /home/runner/work/verilator/verilator/repo/test_regress/t/TestVpiMain.cpp --clk clk -f input.vc +define+TEST_OBJ_DIR=obj_vlt/t_vpi_dump +define+TEST_DUMPFILE=obj_vlt/t_vpi_dump/simx.vcd t/t_vpi_dump.v   > obj_vlt/t_vpi_dump/vlt_compile.log
+- V e r i l a t i o n   R e p o r t: Verilator 5.031 devel rev UNKNOWN.REV
+- Verilator: Built from 0.028 MB sources in 7 modules, into 0.135 MB in 34 C++ files needing 0.000 MB
+- Verilator: Walltime 0.032 s (elab=0.001, cvt=0.013, bld=0.000); cpu 0.032 s on 1 threads; alloced 8.191 MB
+	make -C obj_vlt/t_vpi_dump -f /home/runner/work/verilator/verilator/repo/test_regress/Makefile_obj --no-print-directory VM_PREFIX=Vt_vpi_dump TEST_OBJ_DIR=obj_vlt/t_vpi_dump CPPFLAGS_DRIVER=-DT_VPI_DUMP  OPT_FAST=-O0 OPT_GLOBAL=-O0 Vt_vpi_dump CPPFLAGS_ADD=-DVL_NO_LEGACY   > obj_vlt/t_vpi_dump/vlt_gcc.log
+driver: Entering directory '/home/runner/work/verilator/verilator/repo/test_regress/obj_vlt/t_vpi_dump'
+ccache clang++  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_dump -DVM_PREFIX=Vt_vpi_dump -DVM_PREFIX_INCLUDE="<Vt_vpi_dump.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_dump___024root.h>" -DT_VPI_DUMP  -DVL_NO_LEGACY -DVL_LOCK_SPINS=10000 -O0  -c -o TestVpiMain.o /home/runner/work/verilator/verilator/repo/test_regress/t/TestVpiMain.cpp
+ccache clang++  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_dump -DVM_PREFIX=Vt_vpi_dump -DVM_PREFIX_INCLUDE="<Vt_vpi_dump.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_dump___024root.h>" -DT_VPI_DUMP  -DVL_NO_LEGACY -DVL_LOCK_SPINS=10000 -O0  -c -o t_vpi_dump.o ../../t/t_vpi_dump.cpp
+ccache clang++ -O0  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_dump -DVM_PREFIX=Vt_vpi_dump -DVM_PREFIX_INCLUDE="<Vt_vpi_dump.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_dump___024root.h>" -DT_VPI_DUMP  -DVL_NO_LEGACY -DVL_LOCK_SPINS=10000 -c -o verilated.o /home/runner/work/verilator/verilator/repo/test_regress/../include/verilated.cpp
+ccache clang++ -O0  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_dump -DVM_PREFIX=Vt_vpi_dump -DVM_PREFIX_INCLUDE="<Vt_vpi_dump.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_dump___024root.h>" -DT_VPI_DUMP  -DVL_NO_LEGACY -DVL_LOCK_SPINS=10000 -c -o verilated_dpi.o /home/runner/work/verilator/verilator/repo/test_regress/../include/verilated_dpi.cpp
+ccache clang++ -O0  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_dump -DVM_PREFIX=Vt_vpi_dump -DVM_PREFIX_INCLUDE="<Vt_vpi_dump.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_dump___024root.h>" -DT_VPI_DUMP  -DVL_NO_LEGACY -DVL_LOCK_SPINS=10000 -c -o verilated_vpi.o /home/runner/work/verilator/verilator/repo/test_regress/../include/verilated_vpi.cpp
+ccache clang++ -O0  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_dump -DVM_PREFIX=Vt_vpi_dump -DVM_PREFIX_INCLUDE="<Vt_vpi_dump.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_dump___024root.h>" -DT_VPI_DUMP  -DVL_NO_LEGACY -DVL_LOCK_SPINS=10000 -c -o verilated_threads.o /home/runner/work/verilator/verilator/repo/test_regress/../include/verilated_threads.cpp
+python3 /home/runner/work/verilator/verilator/repo/test_regress/../bin/verilator_includer -DVL_INCLUDE_OPT=include Vt_vpi_dump.cpp Vt_vpi_dump___024root__DepSet_h707f05ac__0.cpp Vt_vpi_dump___024root__DepSet_h33c17057__0.cpp Vt_vpi_dump_TestInterface__DepSet_h70ba1c5a__0.cpp Vt_vpi_dump_arr__DepSet_h517ad834__0.cpp Vt_vpi_dump_arr__L2__DepSet_h66683db2__0.cpp Vt_vpi_dump_arr__L3__DepSet_hffb91e99__0.cpp Vt_vpi_dump_arr__L5__DepSet_h6c296307__0.cpp Vt_vpi_dump_arr__L7__DepSet_hca8dd8fe__0.cpp Vt_vpi_dump__Dpi.cpp Vt_vpi_dump___024root__Slow.cpp Vt_vpi_dump___024root__DepSet_h707f05ac__0__Slow.cpp Vt_vpi_dump___024root__DepSet_h33c17057__0__Slow.cpp Vt_vpi_dump_t__Slow.cpp Vt_vpi_dump_t__DepSet_heb575e73__0__Slow.cpp Vt_vpi_dump___024unit__Slow.cpp Vt_vpi_dump___024unit__DepSet_he1114ff4__0__Slow.cpp Vt_vpi_dump_TestInterface__Slow.cpp Vt_vpi_dump_TestInterface__DepSet_h70ba1c5a__0__Slow.cpp Vt_vpi_dump_arr__Slow.cpp Vt_vpi_dump_arr__DepSet_h14bd92df__0__Slow.cpp Vt_vpi_dump_sub_wrapper__Slow.cpp Vt_vpi_dump_sub_wrapper__DepSet_hf6e702ce__0__Slow.cpp Vt_vpi_dump_arr__L2__Slow.cpp Vt_vpi_dump_arr__L2__DepSet_h3dd03865__0__Slow.cpp Vt_vpi_dump_arr__L3__Slow.cpp Vt_vpi_dump_arr__L3__DepSet_hb6ff554c__0__Slow.cpp Vt_vpi_dump_arr__L5__Slow.cpp Vt_vpi_dump_arr__L5__DepSet_h478f09b2__0__Slow.cpp Vt_vpi_dump_arr__L7__Slow.cpp Vt_vpi_dump_arr__L7__DepSet_haa329329__0__Slow.cpp Vt_vpi_dump_sub__Slow.cpp Vt_vpi_dump_sub__DepSet_hd38398f2__0__Slow.cpp Vt_vpi_dump__Syms.cpp > Vt_vpi_dump__ALL.cpp
+ccache clang++ -O0  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_dump -DVM_PREFIX=Vt_vpi_dump -DVM_PREFIX_INCLUDE="<Vt_vpi_dump.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_dump___024root.h>" -DT_VPI_DUMP  -DVL_NO_LEGACY -DVL_LOCK_SPINS=10000 -c -o Vt_vpi_dump__ALL.o Vt_vpi_dump__ALL.cpp
+echo "" > Vt_vpi_dump__ALL.verilator_deplist.tmp
+clang++ -fuse-ld=mold   TestVpiMain.o t_vpi_dump.o verilated.o verilated_dpi.o verilated_vpi.o verilated_threads.o Vt_vpi_dump__ALL.a    -pthread -lpthread -latomic   -o Vt_vpi_dump
+rm Vt_vpi_dump__ALL.verilator_deplist.tmp
+driver: Leaving directory '/home/runner/work/verilator/verilator/repo/test_regress/obj_vlt/t_vpi_dump'
+	clang++ -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -I/home/runner/work/verilator/verilator/repo/test_regress/../include -fPIC -shared -rdynamic -o obj_vlt/t_vpi_dump/libvpi.so -DVERILATOR -DIS_VPI  t/t_vpi_dump.cpp   > obj_vlt/t_vpi_dump/pli_compile.log
+	export GCOV_PREFIX_STRIP='99'
+	export GCOV_PREFIX='/home/runner/work/verilator/verilator/repo/test_regress/obj_dist/gcov_2'
+	obj_vlt/t_vpi_dump/Vt_vpi_dump    > obj_vlt/t_vpi_dump/vlt_sim.log
+t (vpiModule) t
+    vpiReg:
+    LONGSTART_a_very_long_name_which_will_get_hashed_a_very_long_name_which_will_get_hashed_a_very_long_name_which_will_get_hashed_a_very_long_name_which_will_get_hashed_LONGEND (vpiReg) t.LONGSTART_a_very_long_name_which_will_get_hashed_a_very_long_name_which_will_get_hashed_a_very_long_name_which_will_get_hashed_a_very_long_name_which_will_get_hashed_LONGEND
+    a (vpiReg) TOP.a
+    bus1 (vpiReg) t.bus1
+    clk (vpiReg) TOP.clk
+    count (vpiReg) t.count
+    do_generate (vpiParameter) t.do_generate
+        vpiConstType=vpiDecConst
+    fourthreetwoone (vpiRegArray) t.fourthreetwoone
+        vpiReg:
+        fourthreetwoone (vpiReg) t.fourthreetwoone[3]
+        fourthreetwoone (vpiReg) t.fourthreetwoone[4]
+    half_count (vpiReg) t.half_count
+    long_int (vpiParameter) t.long_int
+        vpiConstType=vpiDecConst
+    onebit (vpiReg) t.onebit
+    quads (vpiRegArray) t.quads
+        vpiReg:
+        quads (vpiReg) t.quads[3]
+        quads (vpiReg) t.quads[2]
+    real1 (vpiRealVar) t.real1
+    status (vpiReg) t.status
+    str1 (vpiStringVar) t.str1
+    text (vpiReg) t.text
+    text_byte (vpiReg) t.text_byte
+    text_half (vpiReg) t.text_half
+    text_long (vpiReg) t.text_long
+    text_word (vpiReg) t.text_word
+    twoone (vpiReg) t.twoone
+    x (vpiReg) TOP.x
+    vpiParameter:
+    do_generate (vpiParameter) t.do_generate
+        vpiConstType=vpiDecConst
+    long_int (vpiParameter) t.long_int
+        vpiConstType=vpiDecConst
+    vpiInternalScope:
+    arr[1] (vpiGenScope) t.arr[1]
+        vpiReg:
+        vpiParameter:
+        vpiInternalScope:
+        arr (vpiModule) t.arr[1].arr
+            vpiReg:
+            LENGTH (vpiParameter) t.arr[1].arr.LENGTH
+                vpiConstType=vpiDecConst
+            check (vpiReg) t.arr[1].arr.check
+            rfr (vpiReg) t.arr[1].arr.rfr
+            sig (vpiReg) t.arr[1].arr.sig
+            verbose (vpiReg) t.arr[1].arr.verbose
+            vpiParameter:
+            LENGTH (vpiParameter) t.arr[1].arr.LENGTH
+                vpiConstType=vpiDecConst
+    arr[2] (vpiGenScope) t.arr[2]
+        vpiReg:
+        vpiParameter:
+        vpiInternalScope:
+        arr (vpiModule) t.arr[2].arr
+            vpiReg:
+            LENGTH (vpiParameter) t.arr[2].arr.LENGTH
+                vpiConstType=vpiDecConst
+            check (vpiReg) t.arr[2].arr.check
+            rfr (vpiReg) t.arr[2].arr.rfr
+            sig (vpiReg) t.arr[2].arr.sig
+            verbose (vpiReg) t.arr[2].arr.verbose
+            vpiParameter:
+            LENGTH (vpiParameter) t.arr[2].arr.LENGTH
+                vpiConstType=vpiDecConst
+    cond_scope (vpiGenScope) t.cond_scope
+        vpiReg:
+        scoped_wire (vpiParameter) t.cond_scope.scoped_wire
+            vpiConstType=vpiDecConst
+        vpiParameter:
+        scoped_wire (vpiParameter) t.cond_scope.scoped_wire
+            vpiConstType=vpiDecConst
+        vpiInternalScope:
+        scoped_sub (vpiModule) t.cond_scope.scoped_sub
+            vpiReg:
+            subsig1 (vpiReg) t.cond_scope.scoped_sub.subsig1
+            subsig2 (vpiReg) t.cond_scope.scoped_sub.subsig2
+            vpiParameter:
+        sub_wrap_gen (vpiModule) t.cond_scope.sub_wrap_gen
+            vpiReg:
+            vpiParameter:
+            vpiInternalScope:
+            my_sub (vpiModule) t.cond_scope.sub_wrap_gen.my_sub
+                vpiReg:
+                subsig1 (vpiReg) t.cond_scope.sub_wrap_gen.my_sub.subsig1
+                subsig2 (vpiReg) t.cond_scope.sub_wrap_gen.my_sub.subsig2
+                vpiParameter:
+    intf_arr[0] (vpiModule) t.intf_arr[0]
+        vpiReg:
+        addr (vpiReg) t.intf_arr[0].addr
+        vpiParameter:
+    intf_arr[1] (vpiModule) t.intf_arr[1]
+        vpiReg:
+        addr (vpiReg) t.intf_arr[1].addr
+        vpiParameter:
+    outer_scope[1] (vpiGenScope) t.outer_scope[1]
+        vpiReg:
+        scoped_param (vpiParameter) t.outer_scope[1].scoped_param
+            vpiConstType=vpiDecConst
+        vpiParameter:
+        scoped_param (vpiParameter) t.outer_scope[1].scoped_param
+            vpiConstType=vpiDecConst
+        vpiInternalScope:
+        inner_scope[1] (vpiGenScope) t.outer_scope[1].inner_scope[1]
+            vpiReg:
+            scoped_param_inner (vpiParameter) t.outer_scope[1].inner_scope[1].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiParameter:
+            scoped_param_inner (vpiParameter) t.outer_scope[1].inner_scope[1].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiInternalScope:
+            arr (vpiModule) t.outer_scope[1].inner_scope[1].arr
+                vpiReg:
+                LENGTH (vpiParameter) t.outer_scope[1].inner_scope[1].arr.LENGTH
+                    vpiConstType=vpiDecConst
+                check (vpiReg) t.outer_scope[1].inner_scope[1].arr.check
+                rfr (vpiReg) t.outer_scope[1].inner_scope[1].arr.rfr
+                sig (vpiReg) t.outer_scope[1].inner_scope[1].arr.sig
+                verbose (vpiReg) t.outer_scope[1].inner_scope[1].arr.verbose
+                vpiParameter:
+                LENGTH (vpiParameter) t.outer_scope[1].inner_scope[1].arr.LENGTH
+                    vpiConstType=vpiDecConst
+        inner_scope[2] (vpiGenScope) t.outer_scope[1].inner_scope[2]
+            vpiReg:
+            scoped_param_inner (vpiParameter) t.outer_scope[1].inner_scope[2].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiParameter:
+            scoped_param_inner (vpiParameter) t.outer_scope[1].inner_scope[2].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiInternalScope:
+            arr (vpiModule) t.outer_scope[1].inner_scope[2].arr
+                vpiReg:
+                LENGTH (vpiParameter) t.outer_scope[1].inner_scope[2].arr.LENGTH
+                    vpiConstType=vpiDecConst
+                check (vpiReg) t.outer_scope[1].inner_scope[2].arr.check
+                rfr (vpiReg) t.outer_scope[1].inner_scope[2].arr.rfr
+                sig (vpiReg) t.outer_scope[1].inner_scope[2].arr.sig
+                verbose (vpiReg) t.outer_scope[1].inner_scope[2].arr.verbose
+                vpiParameter:
+                LENGTH (vpiParameter) t.outer_scope[1].inner_scope[2].arr.LENGTH
+                    vpiConstType=vpiDecConst
+        inner_scope[3] (vpiGenScope) t.outer_scope[1].inner_scope[3]
+            vpiReg:
+            scoped_param_inner (vpiParameter) t.outer_scope[1].inner_scope[3].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiParameter:
+            scoped_param_inner (vpiParameter) t.outer_scope[1].inner_scope[3].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiInternalScope:
+            arr (vpiModule) t.outer_scope[1].inner_scope[3].arr
+                vpiReg:
+                LENGTH (vpiParameter) t.outer_scope[1].inner_scope[3].arr.LENGTH
+                    vpiConstType=vpiDecConst
+                check (vpiReg) t.outer_scope[1].inner_scope[3].arr.check
+                rfr (vpiReg) t.outer_scope[1].inner_scope[3].arr.rfr
+                sig (vpiReg) t.outer_scope[1].inner_scope[3].arr.sig
+                verbose (vpiReg) t.outer_scope[1].inner_scope[3].arr.verbose
+                vpiParameter:
+                LENGTH (vpiParameter) t.outer_scope[1].inner_scope[3].arr.LENGTH
+                    vpiConstType=vpiDecConst
+    outer_scope[2] (vpiGenScope) t.outer_scope[2]
+        vpiReg:
+        scoped_param (vpiParameter) t.outer_scope[2].scoped_param
+            vpiConstType=vpiDecConst
+        vpiParameter:
+        scoped_param (vpiParameter) t.outer_scope[2].scoped_param
+            vpiConstType=vpiDecConst
+        vpiInternalScope:
+        inner_scope[1] (vpiGenScope) t.outer_scope[2].inner_scope[1]
+            vpiReg:
+            scoped_param_inner (vpiParameter) t.outer_scope[2].inner_scope[1].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiParameter:
+            scoped_param_inner (vpiParameter) t.outer_scope[2].inner_scope[1].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiInternalScope:
+            arr (vpiModule) t.outer_scope[2].inner_scope[1].arr
+                vpiReg:
+                LENGTH (vpiParameter) t.outer_scope[2].inner_scope[1].arr.LENGTH
+                    vpiConstType=vpiDecConst
+                check (vpiReg) t.outer_scope[2].inner_scope[1].arr.check
+                rfr (vpiReg) t.outer_scope[2].inner_scope[1].arr.rfr
+                sig (vpiReg) t.outer_scope[2].inner_scope[1].arr.sig
+                verbose (vpiReg) t.outer_scope[2].inner_scope[1].arr.verbose
+                vpiParameter:
+                LENGTH (vpiParameter) t.outer_scope[2].inner_scope[1].arr.LENGTH
+                    vpiConstType=vpiDecConst
+        inner_scope[2] (vpiGenScope) t.outer_scope[2].inner_scope[2]
+            vpiReg:
+            scoped_param_inner (vpiParameter) t.outer_scope[2].inner_scope[2].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiParameter:
+            scoped_param_inner (vpiParameter) t.outer_scope[2].inner_scope[2].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiInternalScope:
+            arr (vpiModule) t.outer_scope[2].inner_scope[2].arr
+                vpiReg:
+                LENGTH (vpiParameter) t.outer_scope[2].inner_scope[2].arr.LENGTH
+                    vpiConstType=vpiDecConst
+                check (vpiReg) t.outer_scope[2].inner_scope[2].arr.check
+                rfr (vpiReg) t.outer_scope[2].inner_scope[2].arr.rfr
+                sig (vpiReg) t.outer_scope[2].inner_scope[2].arr.sig
+                verbose (vpiReg) t.outer_scope[2].inner_scope[2].arr.verbose
+                vpiParameter:
+                LENGTH (vpiParameter) t.outer_scope[2].inner_scope[2].arr.LENGTH
+                    vpiConstType=vpiDecConst
+        inner_scope[3] (vpiGenScope) t.outer_scope[2].inner_scope[3]
+            vpiReg:
+            scoped_param_inner (vpiParameter) t.outer_scope[2].inner_scope[3].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiParameter:
+            scoped_param_inner (vpiParameter) t.outer_scope[2].inner_scope[3].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiInternalScope:
+            arr (vpiModule) t.outer_scope[2].inner_scope[3].arr
+                vpiReg:
+                LENGTH (vpiParameter) t.outer_scope[2].inner_scope[3].arr.LENGTH
+                    vpiConstType=vpiDecConst
+                check (vpiReg) t.outer_scope[2].inner_scope[3].arr.check
+                rfr (vpiReg) t.outer_scope[2].inner_scope[3].arr.rfr
+                sig (vpiReg) t.outer_scope[2].inner_scope[3].arr.sig
+                verbose (vpiReg) t.outer_scope[2].inner_scope[3].arr.verbose
+                vpiParameter:
+                LENGTH (vpiParameter) t.outer_scope[2].inner_scope[3].arr.LENGTH
+                    vpiConstType=vpiDecConst
+    outer_scope[3] (vpiGenScope) t.outer_scope[3]
+        vpiReg:
+        scoped_param (vpiParameter) t.outer_scope[3].scoped_param
+            vpiConstType=vpiDecConst
+        vpiParameter:
+        scoped_param (vpiParameter) t.outer_scope[3].scoped_param
+            vpiConstType=vpiDecConst
+        vpiInternalScope:
+        inner_scope[1] (vpiGenScope) t.outer_scope[3].inner_scope[1]
+            vpiReg:
+            scoped_param_inner (vpiParameter) t.outer_scope[3].inner_scope[1].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiParameter:
+            scoped_param_inner (vpiParameter) t.outer_scope[3].inner_scope[1].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiInternalScope:
+            arr (vpiModule) t.outer_scope[3].inner_scope[1].arr
+                vpiReg:
+                LENGTH (vpiParameter) t.outer_scope[3].inner_scope[1].arr.LENGTH
+                    vpiConstType=vpiDecConst
+                check (vpiReg) t.outer_scope[3].inner_scope[1].arr.check
+                rfr (vpiReg) t.outer_scope[3].inner_scope[1].arr.rfr
+                sig (vpiReg) t.outer_scope[3].inner_scope[1].arr.sig
+                verbose (vpiReg) t.outer_scope[3].inner_scope[1].arr.verbose
+                vpiParameter:
+                LENGTH (vpiParameter) t.outer_scope[3].inner_scope[1].arr.LENGTH
+                    vpiConstType=vpiDecConst
+        inner_scope[2] (vpiGenScope) t.outer_scope[3].inner_scope[2]
+            vpiReg:
+            scoped_param_inner (vpiParameter) t.outer_scope[3].inner_scope[2].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiParameter:
+            scoped_param_inner (vpiParameter) t.outer_scope[3].inner_scope[2].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiInternalScope:
+            arr (vpiModule) t.outer_scope[3].inner_scope[2].arr
+                vpiReg:
+                LENGTH (vpiParameter) t.outer_scope[3].inner_scope[2].arr.LENGTH
+                    vpiConstType=vpiDecConst
+                check (vpiReg) t.outer_scope[3].inner_scope[2].arr.check
+                rfr (vpiReg) t.outer_scope[3].inner_scope[2].arr.rfr
+                sig (vpiReg) t.outer_scope[3].inner_scope[2].arr.sig
+                verbose (vpiReg) t.outer_scope[3].inner_scope[2].arr.verbose
+                vpiParameter:
+                LENGTH (vpiParameter) t.outer_scope[3].inner_scope[2].arr.LENGTH
+                    vpiConstType=vpiDecConst
+        inner_scope[3] (vpiGenScope) t.outer_scope[3].inner_scope[3]
+            vpiReg:
+            scoped_param_inner (vpiParameter) t.outer_scope[3].inner_scope[3].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiParameter:
+            scoped_param_inner (vpiParameter) t.outer_scope[3].inner_scope[3].scoped_param_inner
+                vpiConstType=vpiDecConst
+            vpiInternalScope:
+            arr (vpiModule) t.outer_scope[3].inner_scope[3].arr
+                vpiReg:
+                LENGTH (vpiParameter) t.outer_scope[3].inner_scope[3].arr.LENGTH
+                    vpiConstType=vpiDecConst
+                check (vpiReg) t.outer_scope[3].inner_scope[3].arr.check
+                rfr (vpiReg) t.outer_scope[3].inner_scope[3].arr.rfr
+                sig (vpiReg) t.outer_scope[3].inner_scope[3].arr.sig
+                verbose (vpiReg) t.outer_scope[3].inner_scope[3].arr.verbose
+                vpiParameter:
+                LENGTH (vpiParameter) t.outer_scope[3].inner_scope[3].arr.LENGTH
+                    vpiConstType=vpiDecConst
+    sub (vpiModule) t.sub
+        vpiReg:
+        subsig1 (vpiReg) t.sub.subsig1
+        subsig2 (vpiReg) t.sub.subsig2
+        vpiParameter:
+    sub_wrap (vpiModule) t.sub_wrap
+        vpiReg:
+        vpiParameter:
+        vpiInternalScope:
+        my_sub (vpiModule) t.sub_wrap.my_sub
+            vpiReg:
+            subsig1 (vpiReg) t.sub_wrap.my_sub.subsig1
+            subsig2 (vpiReg) t.sub_wrap.my_sub.subsig2
+            vpiParameter:
+*-* All Finished *-*
+- t/t_vpi_dump.v:76: Verilog $finish
+%Warning: vlt/t_vpi_dump: Line 9 miscompares; obj_vlt/t_vpi_dump/vlt_sim.log != t/t_vpi_dump.out
+Miscompare starts at column 24 w/ F1(got)=0x52 F2(exp)=0x4d
+F1(got):     fourthreetwoone (vpiRegArray) t.fourthreetwoone
+F2(exp):     fourthreetwoone (vpiMemory) t.fourthreetwoone
+
+To update reference: HARNESS_UPDATE_GOLDEN=1 {command} or --golden
+vlt/t_vpi_dump: %Error: Line 9 miscompares; obj_vlt/t_vpi_dump/vlt_sim.log != t/t_vpi_dump.out
+==SUMMARY: Passed 636  Failed 2  Failed-First 2  Skipped 18  Time 8:46
+vlt/t_vpi_get_value_array: FAILED: Exec of make failed: ccache clang++  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_get_value_array -DVM_PREFIX=Vt_vpi_get_value_array -DVM_PREFIX_INCLUDE="<Vt_vpi_get_value_array.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_get_value_array___024root.h>" -DT_VPI_GET_VALUE_ARRAY   -DVL_LOCK_SPINS=10000 -O0  -c -o t_vpi_get_value_array.o ../../t/t_vpi_get_value_array.cpp
+vlt/t_vpi_dump: FAILED: Line 9 miscompares; obj_vlt/t_vpi_dump/vlt_sim.log != t/t_vpi_dump.out
+
+======================================================================
+#vlt/t_vpi_dump: %Error: Line 9 miscompares; obj_vlt/t_vpi_dump/vlt_sim.log != t/t_vpi_dump.out
+		make && test_regress/t/t_vpi_dump.py --sanitize --hashset=0/4 --vlt
+#vlt/t_vpi_get_value_array: %Error: Exec of make failed: ccache clang++  -I. -Wall -Wextra -Wfloat-conversion -Wthread-safety -Werror -MMD -I/home/runner/work/verilator/verilator/repo/test_regress/../include -I/home/runner/work/verilator/verilator/repo/test_regress/../include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fbracket-depth=4096 -fcf-protection=none -Qunused-arguments -Wno-bool-operation -Wno-c++11-narrowing -Wno-constant-logical-operand -Wno-non-pod-varargs -Wno-parentheses-equality -Wno-shadow -Wno-sign-compare -Wno-tautological-bitwise-compare -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable      -DVERILATOR=1 -DVL_DEBUG=1 -DTEST_OBJ_DIR=obj_vlt/t_vpi_get_value_array -DVM_PREFIX=Vt_vpi_get_value_array -DVM_PREFIX_INCLUDE="<Vt_vpi_get_value_array.h>" -DVM_PREFIX_ROOT_INCLUDE="<Vt_vpi_get_value_array___024root.h>" -DT_VPI_GET_VALUE_ARRAY   -DVL_LOCK_SPINS=10000 -O0  -c -o t_vpi_get_value_array.o ../../t/t_vpi_get_value_array.cpp
+		make && test_regress/t/t_vpi_get_value_array.py --sanitize --hashset=0/4 --vlt
+==TESTS DONE, FAILED: Passed 636  Failed 2  Failed-First 2  Skipped 18  Time 8:46
+make: *** [Makefile:51: test] Error 10
+make: Leaving directory '/home/runner/work/verilator/verilator/repo/test_regress'
+Error: Process completed with exit code 2.
+0s
+0s
+

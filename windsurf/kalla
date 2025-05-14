@@ -1,0 +1,530 @@
+
+Benchmark Set
+Query length: 400
+Reference length: 10000
+
+Running benchmarks with 2 threads...
+
+Benchmarking Serial...
+Run 1/3
+Running Serial with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from Serial:
+Running Serial Smith-Waterman with OpenMP
+Sequence 1: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta (Length: 64)
+Sequence 2: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta (Length: 68)
+Number of threads: 2
+Max score: 68 at position (34, 34)
+Execution time: 0.000368 seconds
+
+Time: 0.000368 seconds
+GCUPS: 10.8696
+
+Run 2/3
+Running Serial with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from Serial:
+Running Serial Smith-Waterman with OpenMP
+Sequence 1: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta (Length: 64)
+Sequence 2: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta (Length: 68)
+Number of threads: 2
+Max score: 68 at position (34, 34)
+Execution time: 0.000330 seconds
+
+Time: 0.000330 seconds
+GCUPS: 12.1212
+
+Run 3/3
+Running Serial with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from Serial:
+Running Serial Smith-Waterman with OpenMP
+Sequence 1: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta (Length: 64)
+Sequence 2: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta (Length: 68)
+Number of threads: 2
+Max score: 68 at position (34, 34)
+Execution time: 0.000365 seconds
+
+Time: 0.000365 seconds
+GCUPS: 10.9589
+
+
+Benchmarking RowOMP...
+Run 1/3
+Running RowOMP with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from RowOMP:
+Row-Parallel Smith-Waterman Results:
+Max alignment score: 4 at position (1, 1)
+Optimal alignment:
+>
+>
+Execution time: 0.000125 seconds
+
+Time: 0.000125 seconds
+GCUPS: 32.0000
+
+Run 2/3
+Running RowOMP with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from RowOMP:
+Row-Parallel Smith-Waterman Results:
+Max alignment score: 4 at position (1, 1)
+Optimal alignment:
+>
+>
+Execution time: 0.000160 seconds
+
+Time: 0.000160 seconds
+GCUPS: 25.0000
+
+Run 3/3
+Running RowOMP with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from RowOMP:
+Row-Parallel Smith-Waterman Results:
+Max alignment score: 4 at position (1, 1)
+Optimal alignment:
+>
+>
+Execution time: 0.000134 seconds
+
+Time: 0.000134 seconds
+GCUPS: 29.8507
+
+
+Benchmarking AntiOMP...
+Run 1/3
+Running AntiOMP with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from AntiOMP:
+Running Anti-Diagonal Smith-Waterman with Traceback
+Sequence 1: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta (Length: 64)
+Sequence 2: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta (Length: 68)
+Number of threads: 2
+
+Optimal Alignment:
+Seq1: /home/jitesh/Desktop/work/capstone/windsurf/database/-quer---y.fasta
+Seq2: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+Max alignment score: 115 at position (67, 63)
+Execution time: 0.000646 seconds
+
+Time: 0.000646 seconds
+GCUPS: 6.1920
+
+Run 2/3
+Running AntiOMP with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from AntiOMP:
+Running Anti-Diagonal Smith-Waterman with Traceback
+Sequence 1: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta (Length: 64)
+Sequence 2: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta (Length: 68)
+Number of threads: 2
+
+Optimal Alignment:
+Seq1: /home/jitesh/Desktop/work/capstone/windsurf/database/-quer---y.fasta
+Seq2: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+Max alignment score: 115 at position (67, 63)
+Execution time: 0.000603 seconds
+
+Time: 0.000603 seconds
+GCUPS: 6.6335
+
+Run 3/3
+Running AntiOMP with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from AntiOMP:
+Running Anti-Diagonal Smith-Waterman with Traceback
+Sequence 1: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta (Length: 64)
+Sequence 2: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta (Length: 68)
+Number of threads: 2
+
+Optimal Alignment:
+Seq1: /home/jitesh/Desktop/work/capstone
+Seq2: /home/jitesh/Desktop/work/capstone
+Max alignment score: 115 at position (33, 33)
+Execution time: 0.000690 seconds
+
+Time: 0.000690 seconds
+GCUPS: 5.7971
+
+
+Benchmarking RowOMP_v2...
+Run 1/3
+Running RowOMP_v2 with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from RowOMP_v2:
+Optimized Row-Parallel Smith-Waterman Results:
+Execution time: 0.0005 seconds
+Performance: 0.0001 GCUPS
+Maximum score: 4 at position (5, 6)
+
+Time: 0.000500 seconds
+GCUPS: 8.0000
+
+Run 2/3
+Running RowOMP_v2 with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from RowOMP_v2:
+Optimized Row-Parallel Smith-Waterman Results:
+Execution time: 0.0001 seconds
+Performance: 0.0006 GCUPS
+Maximum score: 4 at position (5, 6)
+
+Time: 0.000100 seconds
+GCUPS: 40.0000
+
+Run 3/3
+Running RowOMP_v2 with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from RowOMP_v2:
+Optimized Row-Parallel Smith-Waterman Results:
+Execution time: 0.0001 seconds
+Performance: 0.0006 GCUPS
+Maximum score: 4 at position (5, 6)
+
+Time: 0.000100 seconds
+GCUPS: 40.0000
+
+
+Benchmarking AntiOMP_v2...
+Run 1/3
+Running AntiOMP_v2 with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from AntiOMP_v2:
+Optimized Anti-Diagonal Smith-Waterman Results:
+Execution time: 0.0001 seconds
+Performance: 0.0004 GCUPS
+Maximum score: 2 at position (1, 1)
+
+Time: 0.000100 seconds
+GCUPS: 40.0000
+
+Run 2/3
+Running AntiOMP_v2 with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from AntiOMP_v2:
+Optimized Anti-Diagonal Smith-Waterman Results:
+Execution time: 0.0001 seconds
+Performance: 0.0005 GCUPS
+Maximum score: 2 at position (1, 1)
+
+Time: 0.000100 seconds
+GCUPS: 40.0000
+
+Run 3/3
+Running AntiOMP_v2 with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from AntiOMP_v2:
+Optimized Anti-Diagonal Smith-Waterman Results:
+Execution time: 0.0001 seconds
+Performance: 0.0004 GCUPS
+Maximum score: 2 at position (1, 1)
+
+Time: 0.000100 seconds
+GCUPS: 40.0000
+
+
+Benchmarking SSW...
+Run 1/3
+Running SSW with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from SSW:
+SSW alignment time: 0.000658 seconds
+target_name: reference
+query_name: query
+optimal_alignment_score: 101	suboptimal_alignment_score: 98	strand: +	target_end: 6217	query_end: 391
+
+
+Time: 0.000658 seconds
+GCUPS: 6.0790
+
+Run 2/3
+Running SSW with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from SSW:
+SSW alignment time: 0.000758 seconds
+target_name: reference
+query_name: query
+optimal_alignment_score: 101	suboptimal_alignment_score: 98	strand: +	target_end: 6217	query_end: 391
+
+
+Time: 0.000758 seconds
+GCUPS: 5.2770
+
+Run 3/3
+Running SSW with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from SSW:
+SSW alignment time: 0.000680 seconds
+target_name: reference
+query_name: query
+optimal_alignment_score: 101	suboptimal_alignment_score: 98	strand: +	target_end: 6217	query_end: 391
+
+
+Time: 0.000680 seconds
+GCUPS: 5.8824
+
+
+Benchmarking SWIPE...
+Run 1/3
+Running SWIPE with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from SWIPE:
+SWIPE 2.1.1 [Jan 15 2025 23:15:34]
+
+Reference: T. Rognes (2011) Faster Smith-Waterman database searches
+with inter-sequence SIMD parallelisation, BMC Bioinformatics, 12:221.
+
+Database file:     /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+Database title:    /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+Database time:     Jan 17, 2025  8:42 PM
+Database size:     10000 residues in 1 sequences
+Longest db seq:    10000 residues
+Query file name:   /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+Query length:      400 residues
+Query description: query                                                       
+Query strands:     Plus and minus
+Score matrix:      1/-3
+Gap penalty:       5+2k
+Max expect shown:  10
+Min score shown:   1
+Max matches shown: 250
+Alignments shown:  100
+Show gi's:         0
+Show taxid's:      0
+Threads:           2
+Symbol type:       Nucleotide
+
+Searching..................................................done
+
+Search started:    Fri, 17 Jan 2025 15:12:45 UTC
+Search completed:  Fri, 17 Jan 2025 15:12:45 UTC
+Elapsed:           0.01s
+Speed:             0.800 GCUPS
+
+                                                                 Score    E
+Sequences producing significant alignments:                      (bits) Value
+
+lcl|reference                                                     +    24   0.19 
+lcl|reference                                                     -    20   3.0  
+
+>lcl|reference                                                                 
+          Length = 10000
+
+ Score = 24.3 bits (12), Expect = 0.19 
+ Identities = 12/12 (100%)
+ Strand = Plus / Plus
+
+Query:   26 cgccccacgtct 37
+            ||||||||||||
+Sbjct: 3974 cgccccacgtct 3985
+
+
+>lcl|reference                                                                 
+          Length = 10000
+
+ Score = 20.3 bits (10), Expect = 3.0  
+ Identities = 10/10 (100%)
+ Strand = Plus / Minus
+
+Query:  305 catatatgtt 314
+            ||||||||||
+Sbjct: 7320 catatatgtt 7311
+
+
+Time: 0.005000 seconds
+GCUPS: 0.8000
+
+Run 2/3
+Running SWIPE with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from SWIPE:
+SWIPE 2.1.1 [Jan 15 2025 23:15:34]
+
+Reference: T. Rognes (2011) Faster Smith-Waterman database searches
+with inter-sequence SIMD parallelisation, BMC Bioinformatics, 12:221.
+
+Database file:     /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+Database title:    /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+Database time:     Jan 17, 2025  8:42 PM
+Database size:     10000 residues in 1 sequences
+Longest db seq:    10000 residues
+Query file name:   /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+Query length:      400 residues
+Query description: query                                                       
+Query strands:     Plus and minus
+Score matrix:      1/-3
+Gap penalty:       5+2k
+Max expect shown:  10
+Min score shown:   1
+Max matches shown: 250
+Alignments shown:  100
+Show gi's:         0
+Show taxid's:      0
+Threads:           2
+Symbol type:       Nucleotide
+
+Searching..................................................done
+
+Search started:    Fri, 17 Jan 2025 15:12:45 UTC
+Search completed:  Fri, 17 Jan 2025 15:12:45 UTC
+Elapsed:           0.01s
+Speed:             0.800 GCUPS
+
+                                                                 Score    E
+Sequences producing significant alignments:                      (bits) Value
+
+lcl|reference                                                     +    24   0.19 
+lcl|reference                                                     -    20   3.0  
+
+>lcl|reference                                                                 
+          Length = 10000
+
+ Score = 24.3 bits (12), Expect = 0.19 
+ Identities = 12/12 (100%)
+ Strand = Plus / Plus
+
+Query:   26 cgccccacgtct 37
+            ||||||||||||
+Sbjct: 3974 cgccccacgtct 3985
+
+
+>lcl|reference                                                                 
+          Length = 10000
+
+ Score = 20.3 bits (10), Expect = 3.0  
+ Identities = 10/10 (100%)
+ Strand = Plus / Minus
+
+Query:  305 catatatgtt 314
+            ||||||||||
+Sbjct: 7320 catatatgtt 7311
+
+
+Time: 0.005000 seconds
+GCUPS: 0.8000
+
+Run 3/3
+Running SWIPE with:
+  Query file: /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+  Reference file: /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+  Threads: 2
+Output from SWIPE:
+SWIPE 2.1.1 [Jan 15 2025 23:15:34]
+
+Reference: T. Rognes (2011) Faster Smith-Waterman database searches
+with inter-sequence SIMD parallelisation, BMC Bioinformatics, 12:221.
+
+Database file:     /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+Database title:    /home/jitesh/Desktop/work/capstone/windsurf/database/reference.fasta
+Database time:     Jan 17, 2025  8:42 PM
+Database size:     10000 residues in 1 sequences
+Longest db seq:    10000 residues
+Query file name:   /home/jitesh/Desktop/work/capstone/windsurf/database/query.fasta
+Query length:      400 residues
+Query description: query                                                       
+Query strands:     Plus and minus
+Score matrix:      1/-3
+Gap penalty:       5+2k
+Max expect shown:  10
+Min score shown:   1
+Max matches shown: 250
+Alignments shown:  100
+Show gi's:         0
+Show taxid's:      0
+Threads:           2
+Symbol type:       Nucleotide
+
+Searching..................................................done
+
+Search started:    Fri, 17 Jan 2025 15:12:45 UTC
+Search completed:  Fri, 17 Jan 2025 15:12:45 UTC
+Elapsed:           0.01s
+Speed:             0.800 GCUPS
+
+                                                                 Score    E
+Sequences producing significant alignments:                      (bits) Value
+
+lcl|reference                                                     +    24   0.19 
+lcl|reference                                                     -    20   3.0  
+
+>lcl|reference                                                                 
+          Length = 10000
+
+ Score = 24.3 bits (12), Expect = 0.19 
+ Identities = 12/12 (100%)
+ Strand = Plus / Plus
+
+Query:   26 cgccccacgtct 37
+            ||||||||||||
+Sbjct: 3974 cgccccacgtct 3985
+
+
+>lcl|reference                                                                 
+          Length = 10000
+
+ Score = 20.3 bits (10), Expect = 3.0  
+ Identities = 10/10 (100%)
+ Strand = Plus / Minus
+
+Query:  305 catatatgtt 314
+            ||||||||||
+Sbjct: 7320 catatatgtt 7311
+
+
+Time: 0.005000 seconds
+GCUPS: 0.8000
+
+
+Benchmark Results:
+------------------------------------------------------------------------------------------------------------------------
+Threads    Implementation  Category             Avg Time(s)     Avg GCUPS    Max GCUPS    Min GCUPS    Std Dev     
+------------------------------------------------------------------------------------------------------------------------
+2          AntiOMP_v2      benchmark_iteration2 0.000100        40.0000      40.0000      40.0000      0.0000      
+2          RowOMP_v2       benchmark_iteration2 0.000233        29.3333      40.0000      8.0000       15.0849     
+2          RowOMP          benchmark_iteration1 0.000140        28.9502      32.0000      25.0000      2.9278      
+2          Serial          benchmark_iteration1 0.000354        11.3166      12.1212      10.8696      0.5701      
+2          AntiOMP         benchmark_iteration1 0.000646        6.2075       6.6335       5.7971       0.3416      
+2          SSW             external             0.000699        5.7461       6.0790       5.2770       0.3413      
+2          SWIPE           external             0.005000        0.8000       0.8000       0.8000       0.0000      

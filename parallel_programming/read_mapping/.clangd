@@ -1,0 +1,7 @@
+
+CompileFlags:
+  Add: [
+    "--stdlib=libc++"
+    "--include-directory=/usr/include/ctype.h"
+    
+  ]
